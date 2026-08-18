@@ -1,0 +1,22 @@
+# --- LLM / Agents ---
+google-genai>=1.0.0
+google-adk>=0.1.0
+
+# --- RAG ---
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-text-splitters>=0.3.0
+langchain-chroma>=0.2.0
+chromadb>=0.5.0
+
+# --- MCP (Booking & Case server) ---
+fastmcp>=2.0.0
+
+# --- UI ---
+gradio>=5.0.0
+
+# --- Cloud (prod case store: Firestore) ---
+google-cloud-firestore>=2.19.0
+
+# --- Dev utilities ---
+python-dotenv>=1.0.0

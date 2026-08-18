@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Secrets
+.env
+
+# Vector store (rebuilt from data/kb + data/policies)
+chroma_db/
+
+# Local case store runtime artifacts
+data/cases.json.bak
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
