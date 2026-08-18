@@ -68,7 +68,7 @@ Nothing under `app/` exists yet — epics build it incrementally. Check what's a
 
 Update the box for your epic when its acceptance criteria (per `02_Feature_Breakdown_and_Backlog.md`) are met. Leave a one-line note if you deviated from a design doc, so the next session isn't surprised.
 
-- [ ] Epic 0 — Repo & environment setup
+- [x] Epic 0 — Repo & environment setup
 - [ ] Epic 1 — Mock data (case store schema + eval set growth — bookings/KB/policies already exist)
 - [ ] Epic 2 — RAG layer
 - [ ] Epic 3 — Booking & Case MCP server
