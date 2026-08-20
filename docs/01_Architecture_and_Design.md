@@ -173,7 +173,7 @@ Both clients (Assistant Agent, Orchestrator) hold their own MCP client connectio
 |---|---|
 | Input validation | reject/sanitize control characters, length caps, basic prompt-injection pattern checks on user free text before it's placed in any tool-call argument |
 | PII redaction | regex + entity check on PNR (`SN\d{4}`), card-like digit sequences, email/phone before writing to logs or the dossier's non-essential fields |
-| Step/cost cap | Assistant loop: max 4 tool calls / turn, 12s wall clock; Orchestrator: max 1 pass per specialist, 20s wall clock — both cap on timeout by escalating rather than hanging |
+| Step/cost cap | Assistant loop: max 4 tool calls / turn, 35s wall clock (raised from this doc's original 12s default — `open_case` runs the Orchestrator synchronously inside the Assistant's own turn, per Epic 5, so the outer cap must contain the inner one; see `app/guardrails/caps.py`); Orchestrator: max 1 pass per specialist, 20s wall clock — both cap on timeout by escalating rather than hanging |
 | Anti-hallucination | grounding contract above + a lightweight post-hoc check: any numeric claim (₹, kg, hours) in the assistant's reply must match a retrieved chunk's numbers, else the reply is rejected and regenerated once, then escalated |
 | Human-in-the-loop | escalation is always available as a fallback from both the Assistant Agent (can't ground) and the Orchestrator (can't safely decide) — never a dead end |
 
@@ -192,6 +192,7 @@ Both clients (Assistant Agent, Orchestrator) hold their own MCP client connectio
   "pnr": "SN8804",
   "conversation_id": "conv-abc",
   "issue_type": "delay_compensation",
+  "summary": "string — free text passed to create_case",
   "status": "open | routed | escalated | resolved",
   "assigned_team": "Refunds | Rebooking | Baggage | Special Assistance | null",
   "verdict": "auto_resolve | route | escalate | null",

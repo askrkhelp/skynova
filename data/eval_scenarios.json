@@ -197,5 +197,494 @@
     "expected": "Handle sarcasm; treat as damaged-baggage claim -> Baggage team; ask for tag+photos within 24h; escalate if value high.",
     "expected_team": "Baggage",
     "notes": "tone robustness"
+  },
+  {
+    "id": "E19",
+    "category": "policy_qa",
+    "turns": [
+      "Can I select my seat for free on a Flex fare?"
+    ],
+    "pnr": null,
+    "expected": "Yes \u2014 Flex includes free standard seat selection; Business can pick any seat incl. extra legroom; Saver seat selection is chargeable.",
+    "expected_team": null,
+    "notes": "grounded, fare-rules comparison"
+  },
+  {
+    "id": "E20",
+    "category": "policy_qa",
+    "turns": [
+      "Does my infant need their own seat and ticket?"
+    ],
+    "pnr": null,
+    "expected": "Infants under 2 travel on the lap for a small fee, no seat. Children 2+ need their own seat.",
+    "expected_team": null,
+    "notes": "grounded, infant/child policy"
+  },
+  {
+    "id": "E21",
+    "category": "policy_qa",
+    "turns": [
+      "Can I bring my dog on the flight?"
+    ],
+    "pnr": null,
+    "expected": "Small pets may travel in cabin on select routes with prior approval, a fee, and health documents; service animals travel free with valid documentation. Request at least 48 hours before departure.",
+    "expected_team": null,
+    "notes": "grounded, pets policy"
+  },
+  {
+    "id": "E22",
+    "category": "policy_qa",
+    "turns": [
+      "How do I fix a typo in the name on my ticket?"
+    ],
+    "pnr": null,
+    "expected": "Minor spelling corrections (up to 3 characters) are free via support. A full name change is treated as a new booking and is not permitted on Saver fares.",
+    "expected_team": null,
+    "notes": "grounded, name correction"
+  },
+  {
+    "id": "E23",
+    "category": "policy_qa",
+    "turns": [
+      "When does the airport check-in counter close for an international flight?"
+    ],
+    "pnr": null,
+    "expected": "75 minutes before departure for international flights (60 minutes for domestic).",
+    "expected_team": null,
+    "notes": "grounded, check-in policy, international vs domestic"
+  },
+  {
+    "id": "E24",
+    "category": "policy_qa",
+    "turns": [
+      "Can I request a vegetarian meal?"
+    ],
+    "pnr": null,
+    "expected": "Special meals (incl. vegetarian) can be requested up to 24 hours before departure on Flex/Business; on Saver it's a paid add-on.",
+    "expected_team": null,
+    "notes": "grounded, special meal"
+  },
+  {
+    "id": "E25",
+    "category": "policy_qa",
+    "turns": [
+      "What happens if I miss the boarding gate?"
+    ],
+    "pnr": null,
+    "expected": "The gate closes 25 minutes before departure; if you're not there by then you're treated as a no-show and lose your seat (no-show = taxes-only refund per refund policy).",
+    "expected_team": null,
+    "notes": "grounded, gate closure + cross-reference to no-show"
+  },
+  {
+    "id": "E26",
+    "category": "policy_qa",
+    "turns": [
+      "How long does a refund take once it's approved?"
+    ],
+    "pnr": null,
+    "expected": "7-14 business days to the original payment method; travel credit (if chosen) is issued instantly and valid 12 months.",
+    "expected_team": null,
+    "notes": "grounded, refund timing"
+  },
+  {
+    "id": "E27",
+    "category": "multi_turn",
+    "turns": [
+      "I'm on SN8944, what's my baggage allowance?",
+      "And what if I go over that?"
+    ],
+    "pnr": "SN8944",
+    "expected": "Turn 1: Business = 35 kg check-in (up to 2 pieces) + 10 kg cabin. Turn 2 must resolve 'that' to the just-stated allowance without re-asking PNR: excess is \u20b9600/kg.",
+    "expected_team": null,
+    "notes": "coreference on 'that'"
+  },
+  {
+    "id": "E28",
+    "category": "multi_turn",
+    "turns": [
+      "My PNR is SN8811, was my flight delayed?",
+      "So do I get anything for that?"
+    ],
+    "pnr": "SN8811",
+    "expected": "Turn 1: yes, delayed ~2.5h. Turn 2 resolves to the delay just confirmed: 2-3h band -> \u20b9500 meal voucher only, not a refund.",
+    "expected_team": null,
+    "notes": "coreference / must not over-promise on second turn"
+  },
+  {
+    "id": "E29",
+    "category": "multi_turn",
+    "turns": [
+      "I'm on SN8905, can I change my seat?",
+      "Is that free or do I pay?"
+    ],
+    "pnr": "SN8905",
+    "expected": "Turn 1: yes, seat selection is available. Turn 2 resolves 'that' to seat selection on this (Saver) booking: chargeable, not free.",
+    "expected_team": null,
+    "notes": "coreference on fare-specific fact"
+  },
+  {
+    "id": "E30",
+    "category": "multi_turn",
+    "turns": [
+      "I'm flying on SN9019, was it delayed?",
+      "What are my options then?"
+    ],
+    "pnr": "SN9019",
+    "expected": "Turn 1: yes, delayed ~5h20m. Turn 2 resolves to that delay: >=3h band -> full refund, free rebooking, or 110% travel credit.",
+    "expected_team": "Refunds",
+    "notes": "coreference into a decision-worthy case"
+  },
+  {
+    "id": "E31",
+    "category": "multi_turn",
+    "turns": [
+      "I'm on SN8984, what's included in my fare?",
+      "And can I change my flight for free?"
+    ],
+    "pnr": "SN8984",
+    "expected": "Turn 1: Business = 35 kg bag, free seat, premium meal, lounge/priority, full refund/changes. Turn 2 resolves to this booking's fare: yes, unlimited free changes on Business.",
+    "expected_team": null,
+    "notes": "coreference, multi-fact fare recall"
+  },
+  {
+    "id": "E32",
+    "category": "clarify",
+    "turns": [
+      "Something's wrong with my booking"
+    ],
+    "pnr": null,
+    "expected": "Ask one targeted clarifying question (which PNR, and what's wrong) before taking any action.",
+    "expected_team": null,
+    "notes": "no PNR, no issue type"
+  },
+  {
+    "id": "E33",
+    "category": "clarify",
+    "turns": [
+      "Can you help me with my flight?"
+    ],
+    "pnr": null,
+    "expected": "Ask which booking (PNR) and what kind of help is needed before acting.",
+    "expected_team": null,
+    "notes": "no PNR, no issue type"
+  },
+  {
+    "id": "E34",
+    "category": "clarify",
+    "turns": [
+      "I need a refund"
+    ],
+    "pnr": null,
+    "expected": "Ask for the PNR before proceeding \u2014 refund eligibility depends on fare class, which requires the booking.",
+    "expected_team": null,
+    "notes": "no PNR; must not assume a fare class"
+  },
+  {
+    "id": "E35",
+    "category": "clarify",
+    "turns": [
+      "My trip got messed up, what do I do?"
+    ],
+    "pnr": "SN9003",
+    "expected": "Even with a PNR known, the issue type is unclear (delay? baggage? cancellation?) -> ask one clarifying question about what specifically happened before acting.",
+    "expected_team": null,
+    "notes": "PNR known but issue ambiguous \u2014 still must clarify, not guess"
+  },
+  {
+    "id": "E36",
+    "category": "refund_auto_approve",
+    "turns": [
+      "Please cancel SN8974 and refund me, it's well over an hour before departure."
+    ],
+    "pnr": "SN8974",
+    "expected": "Business fare, outside the 1h cutoff -> auto-approve full refund, no fee. New-ish account alone (35 days) isn't an abuse signal without a refund-ratio flag.",
+    "expected_team": "Refunds",
+    "notes": "auto-approve, account age is a red herring"
+  },
+  {
+    "id": "E37",
+    "category": "refund_auto_approve",
+    "turns": [
+      "I want to cancel SN9005, still well before the 2-hour cutoff."
+    ],
+    "pnr": "SN9005",
+    "expected": "Flex fare, outside the 2h cutoff -> auto-approve refund minus \u20b91,500 cancellation fee.",
+    "expected_team": "Refunds",
+    "notes": "auto-approve with fee"
+  },
+  {
+    "id": "E38",
+    "category": "refund_auto_approve",
+    "turns": [
+      "Cancel SN8924 please \u2014 I booked it about an hour ago and my flight isn't for another two weeks."
+    ],
+    "pnr": "SN8924",
+    "expected": "Cancelled within 24h of booking and 7+ days before departure -> full refund even though it's a Saver fare (24h free-cancellation rule).",
+    "expected_team": "Refunds",
+    "notes": "24h rule overrides Saver non-refundable default"
+  },
+  {
+    "id": "E39",
+    "category": "refund_auto_approve",
+    "turns": [
+      "Refund my Business ticket SN9020 please, departure is still weeks out."
+    ],
+    "pnr": "SN9020",
+    "expected": "Business fare, well outside the 1h cutoff -> auto-approve full refund, no fee.",
+    "expected_team": "Refunds",
+    "notes": "auto-approve"
+  },
+  {
+    "id": "E40",
+    "category": "refund_auto_approve",
+    "turns": [
+      "Please cancel SN8968, I'm well outside the 2-hour window."
+    ],
+    "pnr": "SN8968",
+    "expected": "Flex fare, outside cutoff -> auto-approve refund minus \u20b91,500 fee.",
+    "expected_team": "Refunds",
+    "notes": "auto-approve, international Flex"
+  },
+  {
+    "id": "E41",
+    "category": "refund_auto_approve",
+    "turns": [
+      "SN9041 \u2014 please refund me, still hours before departure."
+    ],
+    "pnr": "SN9041",
+    "expected": "Business fare, well outside the 1h cutoff -> auto-approve full refund, no fee.",
+    "expected_team": "Refunds",
+    "notes": "auto-approve"
+  },
+  {
+    "id": "E42",
+    "category": "refund_escalate",
+    "turns": [
+      "Cancel SN8905 and refund me in full, I don't care about the rules."
+    ],
+    "pnr": "SN8905",
+    "expected": "Saver is non-refundable (taxes only). Customer disputing/pushing back on policy -> escalate. Must NOT promise a full refund.",
+    "expected_team": "Refunds",
+    "notes": "non-refundable dispute"
+  },
+  {
+    "id": "E43",
+    "category": "refund_escalate",
+    "turns": [
+      "I need a full refund on SN8917 \u2014 my mother is in the hospital."
+    ],
+    "pnr": "SN8917",
+    "expected": "Saver is non-refundable by policy, but a medical/bereavement exception is cited -> escalate per refund policy's escalation guidance, don't auto-deny or auto-approve.",
+    "expected_team": "Refunds",
+    "notes": "medical/bereavement exception -> escalate, not auto-decide"
+  },
+  {
+    "id": "E44",
+    "category": "refund_escalate",
+    "turns": [
+      "Refund SN8925 fully \u2014 this is unacceptable."
+    ],
+    "pnr": "SN8925",
+    "expected": "Saver is non-refundable (taxes only). Customer disputing -> escalate. Must NOT promise a full refund.",
+    "expected_team": "Refunds",
+    "notes": "non-refundable dispute"
+  },
+  {
+    "id": "E45",
+    "category": "refund_escalate",
+    "turns": [
+      "SN8931 needs a complete refund, no exceptions on your end."
+    ],
+    "pnr": "SN8931",
+    "expected": "Saver is non-refundable (taxes only). Customer explicitly rejecting the policy -> escalate rather than argue or concede.",
+    "expected_team": "Refunds",
+    "notes": "non-refundable dispute"
+  },
+  {
+    "id": "E46",
+    "category": "refund_escalate",
+    "turns": [
+      "I want my money back on SN8908, and I'm not accepting store credit."
+    ],
+    "pnr": "SN8908",
+    "expected": "Saver is non-refundable (taxes only); travel credit isn't the applicable path here either. Dispute -> escalate.",
+    "expected_team": "Refunds",
+    "notes": "non-refundable dispute"
+  },
+  {
+    "id": "E47",
+    "category": "delay_comp",
+    "turns": [
+      "SN9040 is delayed, what do I get?"
+    ],
+    "pnr": "SN9040",
+    "expected": "Delayed ~3h40m (>=3h) -> full refund, free rebooking, or 110% travel credit, passenger's choice.",
+    "expected_team": "Refunds",
+    "notes": "3h+ threshold"
+  },
+  {
+    "id": "E48",
+    "category": "delay_comp",
+    "turns": [
+      "How about SN8957, it's delayed too?"
+    ],
+    "pnr": "SN8957",
+    "expected": "Delayed ~5h20m (>=3h) -> full refund, free rebooking, or 110% travel credit, regardless of fare (Saver here).",
+    "expected_team": "Refunds",
+    "notes": "3h+ threshold applies to any fare"
+  },
+  {
+    "id": "E49",
+    "category": "delay_comp_small",
+    "turns": [
+      "SN9013 got delayed, am I owed anything?"
+    ],
+    "pnr": "SN9013",
+    "expected": "Delayed ~2.5h (2-3h band) -> \u20b9500 meal voucher only, not a refund.",
+    "expected_team": null,
+    "notes": "threshold edge, must not over-promise"
+  },
+  {
+    "id": "E50",
+    "category": "delay_comp_small",
+    "turns": [
+      "My flight SN9084 was delayed, what now?"
+    ],
+    "pnr": "SN9084",
+    "expected": "Delayed ~2.5h (2-3h band) -> \u20b9500 meal voucher only, not a refund.",
+    "expected_team": null,
+    "notes": "threshold edge, international"
+  },
+  {
+    "id": "E51",
+    "category": "delay_comp",
+    "turns": [
+      "SN8997 was delayed almost 4 hours, what are my options?"
+    ],
+    "pnr": "SN8997",
+    "expected": "Delayed ~3h40m (>=3h but under 6h) -> full refund, free rebooking, or 110% travel credit. NOT eligible for the hotel+meals tier (that starts at 6h/overnight).",
+    "expected_team": "Refunds",
+    "notes": "must not over-promise hotel+meals below 6h"
+  },
+  {
+    "id": "E52",
+    "category": "delay_comp",
+    "turns": [
+      "SN9060 was delayed because of a storm, do I get cash back?"
+    ],
+    "pnr": "SN9060",
+    "expected": "Weather is outside SkyNova's control (force majeure) -> free rebooking or travel credit only; cash compensation does not apply even though the delay is >=3h.",
+    "expected_team": "Rebooking",
+    "notes": "force majeure overrides the normal delay-length refund option"
+  },
+  {
+    "id": "E53",
+    "category": "baggage_claim",
+    "turns": [
+      "My checked bag was damaged when I landed on SN8910."
+    ],
+    "pnr": "SN8910",
+    "expected": "Damaged baggage -> route to Baggage team; must report at the airport within 24 hours with the tag and photos. Routine wear and tear isn't covered.",
+    "expected_team": "Baggage",
+    "notes": "damaged baggage, 24h window"
+  },
+  {
+    "id": "E54",
+    "category": "baggage_claim",
+    "turns": [
+      "I was charged extra for baggage on SN8932 and think it's wrong \u2014 I only checked in 10kg."
+    ],
+    "pnr": "SN8932",
+    "expected": "Saver allowance is 15 kg; 10 kg checked is within allowance, so no excess fee should apply -> route to Baggage team to investigate/reverse the charge.",
+    "expected_team": "Baggage",
+    "notes": "billing dispute within allowance"
+  },
+  {
+    "id": "E55",
+    "category": "baggage_claim",
+    "turns": [
+      "SN8934 lost my suitcase, it's been 3 days and nothing."
+    ],
+    "pnr": "SN8934",
+    "expected": "Lost baggage, still within the 7-day report window -> route to Baggage team; mention \u20b91,500 interim expenses and \u20b920,000 liability cap.",
+    "expected_team": "Baggage",
+    "notes": "lost baggage, within window"
+  },
+  {
+    "id": "E56",
+    "category": "baggage_claim",
+    "turns": [
+      "They wouldn't let me carry my power bank in the cabin on SN8912, is that normal?"
+    ],
+    "pnr": "SN8912",
+    "expected": "Yes \u2014 power banks over 100 Wh are prohibited in cabin baggage per policy. Informational, grounded answer, no case needed.",
+    "expected_team": null,
+    "notes": "policy confirmation, not a claim"
+  },
+  {
+    "id": "E57",
+    "category": "baggage_claim",
+    "turns": [
+      "My bag arrived a day late on SN8900, can I get compensated for the toiletries I had to buy?"
+    ],
+    "pnr": "SN8900",
+    "expected": "Delayed/lost baggage -> route to Baggage team; report within 7 days, \u20b91,500 interim expenses covers essentials like this.",
+    "expected_team": "Baggage",
+    "notes": "delayed-bag interim expenses"
+  },
+  {
+    "id": "E58",
+    "category": "abuse_signal",
+    "turns": [
+      "Refund SN8903 in full, I've had bad luck with your airline lately."
+    ],
+    "pnr": "SN8903",
+    "expected": "New-ish account with return_to_order_ratio 1.0 -> abuse-signal flag -> escalate for review, do not auto-approve.",
+    "expected_team": "Refunds",
+    "notes": "abuse ratio flag"
+  },
+  {
+    "id": "E59",
+    "category": "abuse_signal",
+    "turns": [
+      "Cancel SN8907 and give me the full \u20b944,400 back, I do this every month."
+    ],
+    "pnr": "SN8907",
+    "expected": "High prior_refunds_90d (5), high return_to_order_ratio (2.5), and high value (\u20b944,400) -> escalate for abuse review, do not auto-approve.",
+    "expected_team": "Refunds",
+    "notes": "high value + high abuse ratio"
+  },
+  {
+    "id": "E60",
+    "category": "abuse_signal",
+    "turns": [
+      "SN8923 refund please, same as always."
+    ],
+    "pnr": "SN8923",
+    "expected": "return_to_order_ratio 3.0 with 3 prior refunds in 90 days -> clear abuse-signal flag -> escalate, do not auto-approve.",
+    "expected_team": "Refunds",
+    "notes": "abuse ratio flag"
+  },
+  {
+    "id": "E61",
+    "category": "abuse_signal",
+    "turns": [
+      "I want SN8916 refunded fully again."
+    ],
+    "pnr": "SN8916",
+    "expected": "return_to_order_ratio 1.5 with repeat refund pattern ('again') -> abuse-signal flag -> escalate, do not auto-approve.",
+    "expected_team": "Refunds",
+    "notes": "abuse ratio + self-reported repeat pattern"
+  },
+  {
+    "id": "E62",
+    "category": "abuse_signal",
+    "turns": [
+      "Give me my money back for SN8936, like the last two times."
+    ],
+    "pnr": "SN8936",
+    "expected": "Saver is non-refundable by fare rules AND return_to_order_ratio is 2.0 with a self-reported repeat pattern -> escalate (double reason: policy dispute + abuse signal), do not auto-approve.",
+    "expected_team": "Refunds",
+    "notes": "combined non-refundable + abuse signal"
   }
 ]

@@ -1,0 +1,117 @@
+[
+  {
+    "id": "E01",
+    "category": "policy_qa",
+    "notes": "simple grounded answer",
+    "expected_text": "Answer from baggage policy: 7 kg, 1 piece. Grounded, no case.",
+    "duration_s": 9.51,
+    "error": null,
+    "turns": [
+      {
+        "text": "What is my cabin baggage limit on a Saver fare?",
+        "extracted": {
+          "issue_type": "policy_question",
+          "pnr": null,
+          "passenger": null,
+          "flight_leg": null,
+          "fare_class": "Saver",
+          "amount": null,
+          "urgency": null
+        },
+        "needs_clarification": false,
+        "clarifying_question": null,
+        "reply": "On a Saver fare, your cabin baggage allowance is 7 kg (1 piece) [policies/policy_baggage.md#allowances-by-fare].",
+        "case_id": null,
+        "citations": [
+          "policies/policy_baggage.md#allowances-by-fare"
+        ],
+        "claims_total": 1,
+        "unverified_claims": [],
+        "grounded": true
+      }
+    ],
+    "final_case": null,
+    "expected": {
+      "case": false,
+      "verdict": null,
+      "team": null,
+      "clarify": false
+    },
+    "actual": {
+      "case_id": null,
+      "verdict": null,
+      "team": null,
+      "clarify": false,
+      "guardrail_tripped": false
+    },
+    "faithfulness": null
+  },
+  {
+    "id": "E05",
+    "category": "refund_auto_approve",
+    "notes": "auto-approve",
+    "expected_text": "Business fare, >1h before departure -> Auto-approve full refund, no fee.",
+    "duration_s": 12.06,
+    "error": null,
+    "turns": [
+      {
+        "text": "I want to cancel SN8803 and get a refund.",
+        "extracted": {
+          "issue_type": "unclear",
+          "pnr": null,
+          "passenger": null,
+          "flight_leg": null,
+          "fare_class": null,
+          "amount": null,
+          "urgency": null
+        },
+        "needs_clarification": false,
+        "clarifying_question": null,
+        "reply": "This is taking longer than expected, so I've opened a case (CASE-000002) for a specialist to review and get back to you.",
+        "case_id": "CASE-000002",
+        "citations": [],
+        "claims_total": 0,
+        "unverified_claims": [],
+        "grounded": true
+      }
+    ],
+    "final_case": {
+      "case_id": "CASE-000002",
+      "pnr": "UNKNOWN",
+      "conversation_id": "eval-E05",
+      "issue_type": "unclear",
+      "summary": "Guardrail escalation: guardrail cap tripped",
+      "status": "escalated",
+      "assigned_team": null,
+      "verdict": "escalate",
+      "justification": {
+        "policy_clause": "guardrail/human_review_required",
+        "policy_text": "N/A - guardrail escalation, not a policy-grounded verdict.",
+        "signals": {
+          "issue_type": "unclear",
+          "intent_confidence": 0.0,
+          "risk_score": 0.0,
+          "abuse_flag": false
+        },
+        "reasoning": "guardrail cap tripped"
+      },
+      "dossier": "Case CASE-000002 \u2014 guardrail escalation\nReason: guardrail cap tripped\nTraveler's original message: \"\"",
+      "created_at": "2026-08-19T16:48:52Z",
+      "updated_at": "2026-08-19T16:48:52Z"
+    },
+    "expected": {
+      "case": true,
+      "verdict": "route",
+      "team": "Refunds",
+      "clarify": false
+    },
+    "actual": {
+      "case_id": "CASE-000002",
+      "verdict": "escalate",
+      "team": null,
+      "clarify": false,
+      "guardrail_tripped": true
+    },
+    "faithfulness": null
+  }
+]

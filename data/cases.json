@@ -1,0 +1,291 @@
+[
+  {
+    "case_id": "CASE-000001",
+    "pnr": "UNKNOWN",
+    "conversation_id": "conv-ac816597",
+    "issue_type": "unclear",
+    "summary": "Guardrail escalation: guardrail cap tripped",
+    "status": "escalated",
+    "assigned_team": null,
+    "verdict": "escalate",
+    "justification": {
+      "policy_clause": "guardrail/human_review_required",
+      "policy_text": "N/A - guardrail escalation, not a policy-grounded verdict.",
+      "signals": {
+        "issue_type": "unclear",
+        "intent_confidence": 0.0,
+        "risk_score": 0.0,
+        "abuse_flag": false
+      },
+      "reasoning": "guardrail cap tripped"
+    },
+    "dossier": "Case CASE-000001 \u2014 guardrail escalation\nReason: guardrail cap tripped\nTraveler's original message: \"\"",
+    "created_at": "2026-08-19T16:22:21Z",
+    "updated_at": "2026-08-19T16:22:21Z"
+  },
+  {
+    "case_id": "CASE-000002",
+    "pnr": "SN8803",
+    "conversation_id": "conv-8cb88395",
+    "issue_type": "refund",
+    "summary": "Traveler wants to cancel booking and get a refund.",
+    "status": "routed",
+    "assigned_team": "Refunds",
+    "verdict": "route",
+    "justification": {
+      "policy_clause": "policies/policy_refund_cancellation.md#refund-eligibility-by-fare",
+      "policy_text": "## Refund eligibility by fare\n- **Saver:** non-refundable. Only statutory taxes are refunded.\n- **Flex:** refundable up to 2 hours before departure, minus a \u20b91,500 fee.\n- **Business:** fully refundable, no fee, up to 1 hour before departure.",
+      "signals": {
+        "issue_type": "refund",
+        "intent_confidence": 1.0,
+        "fare_class": "Business",
+        "price_inr": 27300,
+        "delay_minutes": 0,
+        "risk_score": 0.084,
+        "abuse_flag": false
+      },
+      "reasoning": "Business fare is fully refundable with no cancellation fee."
+    },
+    "dossier": null,
+    "created_at": "2026-08-19T16:23:25Z",
+    "updated_at": "2026-08-19T16:23:32Z"
+  },
+  {
+    "case_id": "CASE-000003",
+    "pnr": "UNKNOWN",
+    "conversation_id": "conv-8cb88395",
+    "issue_type": "unclear",
+    "summary": "Guardrail escalation: guardrail cap tripped",
+    "status": "escalated",
+    "assigned_team": null,
+    "verdict": "escalate",
+    "justification": {
+      "policy_clause": "guardrail/human_review_required",
+      "policy_text": "N/A - guardrail escalation, not a policy-grounded verdict.",
+      "signals": {
+        "issue_type": "unclear",
+        "intent_confidence": 0.0,
+        "risk_score": 0.0,
+        "abuse_flag": false
+      },
+      "reasoning": "guardrail cap tripped"
+    },
+    "dossier": "Case CASE-000003 \u2014 guardrail escalation\nReason: guardrail cap tripped\nTraveler's original message: \"\"",
+    "created_at": "2026-08-19T16:23:34Z",
+    "updated_at": "2026-08-19T16:23:34Z"
+  },
+  {
+    "case_id": "CASE-000004",
+    "pnr": "SN8802",
+    "conversation_id": "conv-8cb88395",
+    "issue_type": "refund",
+    "summary": "Traveler wants to cancel booking and get a full refund.",
+    "status": "resolved",
+    "assigned_team": "Refunds",
+    "verdict": "escalate",
+    "justification": {
+      "policy_clause": "policies/policy_refund_cancellation.md#escalation-guidance",
+      "policy_text": "## Escalation guidance\nEscalate to a human when: the fare is non-refundable but the customer cites a medical/bereavement exception; the refund value is unusually high; or there are signs of repeat-refund abuse.",
+      "signals": {
+        "issue_type": "refund",
+        "intent_confidence": 0.95,
+        "fare_class": "Saver",
+        "price_inr": 4300,
+        "delay_minutes": 0,
+        "risk_score": 0.149,
+        "abuse_flag": false
+      },
+      "reasoning": "Saver is non-refundable (only statutory taxes are refunded). The traveler is asking for a refund the fare doesn't grant \u2014 per the refund policy's escalation guidance, a human must review the dispute.",
+      "human_actions": [
+        {
+          "action": "deny",
+          "note": "Saver fare is non-refundable per policy; denying full refund.",
+          "actor": "reviewer",
+          "at": "2026-08-19T16:25:31Z"
+        }
+      ]
+    },
+    "dossier": "Case CASE-000004 \u2014 refund \u2014 PNR SN8802 (Diya Rao)\nFlight SN-505 BLR->DEL on 2026-08-19 15:00 | fare=Saver | price=INR 4300 | status=confirmed | delay=0min\nAccount: age=216d, prior_bookings=8, prior_refunds_90d=1, return_to_order_ratio=0.03\nPolicy clause: policies/policy_refund_cancellation.md#escalation-guidance\nPolicy text: ## Escalation guidance\nEscalate to a human when: the fare is non-refundable but the customer cites a medical/bereavement exception; the refund value is unusually high; or there are signs of repeat-refund abuse.\nRisk score: 0.149 | abuse_flag=False\nReasoning: Saver is non-refundable (only statutory taxes are refunded). The traveler is asking for a refund the fare doesn't grant \u2014 per the refund policy's escalation guidance, a human must review the dispute.\nTraveler's original message: \"Cancel [PNR] and refund me fully, I changed my mind.\"",
+    "created_at": "2026-08-19T16:23:47Z",
+    "updated_at": "2026-08-19T16:25:31Z"
+  },
+  {
+    "case_id": "CASE-000005",
+    "pnr": "UNKNOWN",
+    "conversation_id": "conv-8cb88395",
+    "issue_type": "unclear",
+    "summary": "Guardrail escalation: guardrail cap tripped",
+    "status": "routed",
+    "assigned_team": "Special Assistance",
+    "verdict": "escalate",
+    "justification": {
+      "policy_clause": "guardrail/human_review_required",
+      "policy_text": "N/A - guardrail escalation, not a policy-grounded verdict.",
+      "signals": {
+        "issue_type": "unclear",
+        "intent_confidence": 0.0,
+        "risk_score": 0.0,
+        "abuse_flag": false
+      },
+      "reasoning": "guardrail cap tripped",
+      "human_actions": [
+        {
+          "action": "reassign",
+          "note": "Misrouted, sending to the right team.",
+          "actor": "reviewer",
+          "at": "2026-08-19T16:25:31Z"
+        }
+      ]
+    },
+    "dossier": "Case CASE-000005 \u2014 guardrail escalation\nReason: guardrail cap tripped\nTraveler's original message: \"\"",
+    "created_at": "2026-08-19T16:23:53Z",
+    "updated_at": "2026-08-19T16:25:31Z"
+  },
+  {
+    "case_id": "CASE-000006",
+    "pnr": "SN8807",
+    "conversation_id": "conv-8cb88395",
+    "issue_type": "baggage_claim",
+    "summary": "Traveler reports missing baggage.",
+    "status": "resolved",
+    "assigned_team": "Baggage",
+    "verdict": "route",
+    "justification": {
+      "policy_clause": "policies/policy_baggage.md#lost-baggage",
+      "policy_text": "## Lost baggage\nReport lost baggage **within 7 days** of arrival. SkyNova provides interim expenses of \u20b91,500 for essentials while tracing. Liability for lost baggage is limited to **\u20b920,000** unless a higher value was declared and a fee paid at check-in.",
+      "signals": {
+        "issue_type": "baggage_claim",
+        "intent_confidence": 1.0,
+        "fare_class": "Business",
+        "price_inr": 26400,
+        "delay_minutes": 0,
+        "risk_score": 0.163,
+        "abuse_flag": false
+      },
+      "reasoning": "Lost/damaged/delayed baggage claims are routed to the Baggage team to investigate and process.",
+      "human_actions": [
+        {
+          "action": "approve",
+          "note": "Confirmed with baggage ops, approving claim.",
+          "actor": "reviewer",
+          "at": "2026-08-19T16:25:31Z"
+        }
+      ]
+    },
+    "dossier": null,
+    "created_at": "2026-08-19T16:24:04Z",
+    "updated_at": "2026-08-19T16:25:31Z"
+  },
+  {
+    "case_id": "CASE-000007",
+    "pnr": "SN8804",
+    "conversation_id": "conv-d2fd14c3",
+    "issue_type": "change",
+    "summary": "Traveler wants to change their flight.",
+    "status": "resolved",
+    "assigned_team": null,
+    "verdict": null,
+    "justification": {
+      "human_actions": [
+        {
+          "action": "approve",
+          "note": "Approved by reviewer.",
+          "actor": "reviewer",
+          "at": "2026-08-19T17:52:38Z"
+        }
+      ]
+    },
+    "dossier": null,
+    "created_at": "2026-08-19T17:50:52Z",
+    "updated_at": "2026-08-19T17:52:38Z"
+  },
+  {
+    "case_id": "CASE-000008",
+    "pnr": "UNKNOWN",
+    "conversation_id": "conv-d2fd14c3",
+    "issue_type": "policy_question",
+    "summary": "Guardrail escalation: guardrail cap tripped",
+    "status": "escalated",
+    "assigned_team": null,
+    "verdict": "escalate",
+    "justification": {
+      "policy_clause": "guardrail/human_review_required",
+      "policy_text": "N/A - guardrail escalation, not a policy-grounded verdict.",
+      "signals": {
+        "issue_type": "policy_question",
+        "intent_confidence": 0.0,
+        "risk_score": 0.0,
+        "abuse_flag": false
+      },
+      "reasoning": "guardrail cap tripped"
+    },
+    "dossier": "Case CASE-000008 \u2014 guardrail escalation\nReason: guardrail cap tripped\nTraveler's original message: \"\"",
+    "created_at": "2026-08-19T17:50:56Z",
+    "updated_at": "2026-08-19T17:50:56Z"
+  },
+  {
+    "case_id": "CASE-000009",
+    "pnr": "SN8804",
+    "conversation_id": "conv-0a550bd6",
+    "issue_type": "change",
+    "summary": "Traveler wants to change their flight.",
+    "status": "routed",
+    "assigned_team": "Rebooking",
+    "verdict": "route",
+    "justification": {
+      "policy_clause": "policies/fare_rules_flex.md#skynova-fare-rules-flex",
+      "policy_text": "# SkyNova Fare Rules \u2014 FLEX  \nThe Flex fare is our most popular fare. It balances price and flexibility.  \n| Rule | Flex |\n|------|------|\n| Refundable | Yes \u2014 refundable up to 2 hours before departure, minus a \u20b91,500 cancellation fee |\n| Change / reschedule | One free date/flight change; each additional change is \u20b91,500 + fare difference |\n| Cancellation window | Up to 2 hours before scheduled departure for a refund |\n| Check-in baggage | 25 kg |\n| Cabin baggage | 7 kg, 1 piece |\n| Seat selection | Free standard seat selection |\n| Meal | One meal included |\n| Priority / lounge | Not included |  \n**Key point for support:** a Flex ticket **is refundable** (minus \u20b91,500) if cancelled at least 2 hours before departure. It also includes **one free change**.",
+      "signals": {
+        "issue_type": "change",
+        "intent_confidence": 1.0,
+        "fare_class": "Flex",
+        "price_inr": 7200,
+        "delay_minutes": 0,
+        "risk_score": 0.039,
+        "abuse_flag": false
+      },
+      "reasoning": "Flex fare change/reschedule request routed to Rebooking for processing."
+    },
+    "dossier": null,
+    "created_at": "2026-08-19T18:01:18Z",
+    "updated_at": "2026-08-19T18:01:20Z"
+  },
+  {
+    "case_id": "CASE-000010",
+    "pnr": "SN8804",
+    "conversation_id": "conv-55f3c2c0",
+    "issue_type": "change",
+    "summary": "Traveler wants to change their flight.",
+    "status": "open",
+    "assigned_team": null,
+    "verdict": null,
+    "justification": null,
+    "dossier": null,
+    "created_at": "2026-08-19T19:26:49Z",
+    "updated_at": "2026-08-19T19:26:49Z"
+  },
+  {
+    "case_id": "CASE-000011",
+    "pnr": "UNKNOWN",
+    "conversation_id": "conv-55f3c2c0",
+    "issue_type": "unclear",
+    "summary": "Guardrail escalation: guardrail cap tripped",
+    "status": "escalated",
+    "assigned_team": null,
+    "verdict": "escalate",
+    "justification": {
+      "policy_clause": "guardrail/human_review_required",
+      "policy_text": "N/A - guardrail escalation, not a policy-grounded verdict.",
+      "signals": {
+        "issue_type": "unclear",
+        "intent_confidence": 0.0,
+        "risk_score": 0.0,
+        "abuse_flag": false
+      },
+      "reasoning": "guardrail cap tripped"
+    },
+    "dossier": "Case CASE-000011 \u2014 guardrail escalation\nReason: guardrail cap tripped\nTraveler's original message: \"\"",
+    "created_at": "2026-08-19T19:26:51Z",
+    "updated_at": "2026-08-19T19:26:51Z"
+  }
+]

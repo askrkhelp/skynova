@@ -1,0 +1,29 @@
+# Builds the ResolveAI image, pulling GEMINI_API_KEY from Secret Manager for
+# the stage-1 Chroma pre-build (Dockerfile) via a BuildKit secret mount so it
+# never lands in an image layer. Push the image afterward with a separate
+# `docker push` (or add an `images:` block) once the tag is confirmed good.
+#
+# Usage:
+#   gcloud builds submit --config cloudbuild.yaml \
+#     --substitutions=_IMAGE=<region>-docker.pkg.dev/<project>/resolveai/app:latest
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        DOCKER_BUILDKIT=1 docker build \
+          --secret id=gemini_key,env=GEMINI_API_KEY \
+          -t "$_IMAGE" .
+    secretEnv: ["GEMINI_API_KEY"]
+
+images:
+  - "$_IMAGE"
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/$PROJECT_ID/secrets/gemini-api-key/versions/latest
+      env: "GEMINI_API_KEY"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
